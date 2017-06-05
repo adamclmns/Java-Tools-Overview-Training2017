@@ -1,5 +1,14 @@
 *.class
 
+# Java IDE crap
+.classpath
+.settings
+.vscode
+.project
+
+# Maven crap
+target/*
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
