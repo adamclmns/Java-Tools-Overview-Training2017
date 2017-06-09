@@ -70,3 +70,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Ignoring Microsoft Word Temp files
+*.tmp
+~$*.*
