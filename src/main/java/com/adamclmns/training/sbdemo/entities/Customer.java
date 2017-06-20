@@ -1,12 +1,17 @@
 package com.adamclmns.training.sbdemo.entities;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
-public class Customer {
-
+public class Customer implements Serializable {
+    
+        @Transient
+        private static final String[] fields = {"id","firstName","lastName"};
+        
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -42,7 +47,9 @@ public class Customer {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
+        public String[] getFields(){
+            return Customer.fields;
+        }
 	@Override
 	public String toString() {
 		return String.format("Customer[id=%d, firstName='%s', lastName='%s']", id,

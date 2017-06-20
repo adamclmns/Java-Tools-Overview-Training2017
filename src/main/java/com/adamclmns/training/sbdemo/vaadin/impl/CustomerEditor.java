@@ -1,7 +1,6 @@
-package com.adamclmns.training.sbdemo.vaadin;
+package com.adamclmns.training.sbdemo.vaadin.impl;
 
 import com.adamclmns.training.sbdemo.entities.Customer;
-import com.adamclmns.training.sbdemo.repo.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vaadin.data.Binder;
@@ -14,6 +13,7 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+import com.adamclmns.training.sbdemo.repo.CustomerRepo;
 
 /**
  * A simple example to introduce building forms. As your real application is probably much
@@ -28,7 +28,7 @@ import com.vaadin.ui.themes.ValoTheme;
 @UIScope
 public class CustomerEditor extends VerticalLayout {
 
-	private final CustomerRepository repository;
+	private final CustomerRepo repository;
 
 	/**
 	 * The currently edited customer
@@ -48,7 +48,7 @@ public class CustomerEditor extends VerticalLayout {
 	Binder<Customer> binder = new Binder<>(Customer.class);
 
 	@Autowired
-	public CustomerEditor(CustomerRepository repository) {
+	public CustomerEditor(CustomerRepo repository) {
 		this.repository = repository;
 
 		addComponents(firstName, lastName, actions);

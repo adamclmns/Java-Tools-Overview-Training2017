@@ -6,12 +6,12 @@
 package com.adamclmns.training.sbdemo.rest;
 
 import com.adamclmns.training.sbdemo.entities.Customer;
-import com.adamclmns.training.sbdemo.repo.CustomerRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.adamclmns.training.sbdemo.repo.CustomerRepo;
 
 /**
  * https://spring.io/guides/gs/rest-service/
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerRestController {
     
     @Autowired
-    CustomerRepository repo;
+    CustomerRepo repo;
 
     // http://localhost:8080/svc/customer?lastName=Palmer
     @RequestMapping("/svc/customer")

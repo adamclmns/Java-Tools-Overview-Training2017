@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 /**
  *
@@ -20,28 +21,23 @@ public class Product {
     @Id
     @GeneratedValue
     private Long id;
-    
+    @Transient
+    private static final String[] fields = {"id","name","description","cost","salePrice"};
     private String name;
     private String description;
     private BigDecimal cost;
+    private BigDecimal salePrice;
     
     protected Product() {
     }
-
+    
+    public Product(String name){
+        this.name = name;
+    }
     public Long getId() {
         return id;
     }
     
-    //TODO: Add Some members for this class, and create test data. 
-
-    /*
-	@Override
-	public String toString() {
-		return String.format("Customer[id=%d, firstName='%s', lastName='%s']", id,
-				firstName, lastName);
-	}
-     */
-
     public String getName() {
         return name;
     }
@@ -65,4 +61,19 @@ public class Product {
     public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
+    public BigDecimal getSalePrice(){
+        return salePrice;
+    }
+    public void setSalePrice(BigDecimal salePrice){
+        this.salePrice = salePrice;
+    }
+    public String[] getFields(){
+        return Product.fields;
+    }
+	@Override
+	public String toString() {
+		return String.format("Customer[id=%d, name='%s', description='%s', cost=%f, salePrice=%f]", id,
+				name, description, cost, salePrice);
+	}
+     
 }
