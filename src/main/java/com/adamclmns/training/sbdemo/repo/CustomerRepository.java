@@ -1,4 +1,4 @@
-package com.adamclmns.training.sbdemo.service;
+package com.adamclmns.training.sbdemo.repo;
 
 import com.adamclmns.training.sbdemo.entities.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;

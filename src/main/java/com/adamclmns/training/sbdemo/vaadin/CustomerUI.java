@@ -1,7 +1,7 @@
-package com.adamclmns.training.sbdemo.controllers;
+package com.adamclmns.training.sbdemo.vaadin;
 
 import com.adamclmns.training.sbdemo.entities.Customer;
-import com.adamclmns.training.sbdemo.service.CustomerRepository;
+import com.adamclmns.training.sbdemo.repo.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
@@ -16,8 +16,8 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-@SpringUI
-public class VaadinUI extends UI {
+@SpringUI(path="/index")
+public class CustomerUI extends UI {
 
 	private final CustomerRepository repo;
 
@@ -30,7 +30,7 @@ public class VaadinUI extends UI {
 	private final Button addNewBtn;
 
 	@Autowired
-	public VaadinUI(CustomerRepository repo, CustomerEditor editor) {
+	public CustomerUI(CustomerRepository repo, CustomerEditor editor) {
 		this.repo = repo;
 		this.editor = editor;
 		this.grid = new Grid<>(Customer.class);

@@ -1,7 +1,7 @@
-package com.adamclmns.training.sbdemo.controllers;
+package com.adamclmns.training.sbdemo.vaadin;
 
 import com.adamclmns.training.sbdemo.entities.Customer;
-import com.adamclmns.training.sbdemo.service.CustomerRepository;
+import com.adamclmns.training.sbdemo.repo.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vaadin.data.Binder;

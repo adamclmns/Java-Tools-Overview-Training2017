@@ -1,7 +1,7 @@
 package com.adamclmns.training.sbdemo;
 
 import com.adamclmns.training.sbdemo.entities.Customer;
-import com.adamclmns.training.sbdemo.service.CustomerRepository;
+import com.adamclmns.training.sbdemo.repo.CustomerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
