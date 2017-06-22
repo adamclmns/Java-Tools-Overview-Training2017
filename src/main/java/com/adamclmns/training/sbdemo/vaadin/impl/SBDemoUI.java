@@ -8,10 +8,14 @@ package com.adamclmns.training.sbdemo.vaadin.impl;
 import com.adamclmns.training.sbdemo.repo.ProductRepo;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewDisplay;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
+import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
@@ -25,15 +29,18 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Theme("valo")
 @SpringUI
-public class SBDemoUI extends UI {
-
+@SpringViewDisplay
+public class SBDemoUI extends UI implements ViewDisplay{
+    
+    private Panel springViewDisplay;
+    
     @Autowired
     private SpringViewProvider viewProvider;
     
 
     @Override
     protected void init(VaadinRequest request) {
-        getPage().setTitle("Navigation Example");
+        getPage().setTitle("Vaadin Spring UI Example With Navigation");
         final VerticalLayout root = new VerticalLayout();
         root.setSizeFull();
         root.setMargin(true);
@@ -47,14 +54,19 @@ public class SBDemoUI extends UI {
         navigationBar.addComponent(createNavigationButton("CustomerListView", CustomerListView.VIEW_NAME));
         root.addComponent(navigationBar);
 
-        final Panel viewContainer = new Panel();
-        viewContainer.setSizeFull();
-        root.addComponent(viewContainer);
-        root.setExpandRatio(viewContainer, 1.0f);
+        springViewDisplay = new Panel();
+        springViewDisplay.setSizeFull();
+        root.addComponent(springViewDisplay);
+        root.setExpandRatio(springViewDisplay, 1.0f);
 
-        Navigator navigator = new Navigator(this, viewContainer);
+        Navigator navigator = new Navigator(this, springViewDisplay);
         navigator.addProvider(viewProvider);
 
+    }
+    
+    @Override
+    public void showView(View view){
+        springViewDisplay.setContent((Component) view);
     }
 
     private Button createNavigationButton(String caption, final String viewName) {

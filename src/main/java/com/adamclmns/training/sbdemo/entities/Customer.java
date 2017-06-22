@@ -8,52 +8,58 @@ import javax.persistence.Transient;
 
 @Entity
 public class Customer implements Serializable {
-    
-        @Transient
-        private static final String[] fields = {"id","firstName","lastName"};
-        
-	@Id
-	@GeneratedValue
-	private Long id;
 
-	private String firstName;
+    @Transient
+    private static final String[] fields = {"id", "firstName", "lastName"};
 
-	private String lastName;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-	protected Customer() {
-	}
+    private String firstName;
 
-	public Customer(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
+    private String lastName;
 
-	public Long getId() {
-		return id;
-	}
+    protected Customer() {
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public Customer(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public Customer(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-        public String[] getFields(){
-            return Customer.fields;
-        }
-	@Override
-	public String toString() {
-		return String.format("Customer[id=%d, firstName='%s', lastName='%s']", id,
-				firstName, lastName);
-	}
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String[] getFields() {
+        return Customer.fields;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Customer[id=%d, firstName='%s', lastName='%s']", id,
+                firstName, lastName);
+    }
 
 }
