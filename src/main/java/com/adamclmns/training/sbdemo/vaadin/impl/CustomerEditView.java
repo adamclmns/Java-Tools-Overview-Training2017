@@ -54,26 +54,17 @@ public class CustomerEditView extends VerticalLayout implements View {
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         // wire action buttons to save, delete and reset
-        save.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent e) {
-                repository.save(entity);
-                goToListView();
-            }
+        save.addClickListener((Button.ClickEvent e) -> {
+            repository.save(entity);
+            goToListView();
         });
-        delete.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent e) {
-                repository.delete(entity);
-                goToListView();
-            }
+        delete.addClickListener((Button.ClickEvent e) -> {
+            repository.delete(entity);
+            goToListView();
         });
-        cancel.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent e) {
-                binder.removeBean();
-                goToListView();
-            }
+        cancel.addClickListener((Button.ClickEvent e) -> {
+            binder.removeBean();
+            goToListView();
         });
         setVisible(false);
     }
