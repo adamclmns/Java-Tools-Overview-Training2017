@@ -56,14 +56,15 @@ public class CustomerEditView extends VerticalLayout implements View {
         // wire action buttons to save, delete and reset
         save.addClickListener((Button.ClickEvent e) -> {
             repository.save(entity);
-            getUI().getNavigator().navigateTo(CustomerListView.VIEW_NAME);
+            goToListView();
         });
         delete.addClickListener(e -> {
             repository.delete(entity);
+            goToListView();
         });
         cancel.addClickListener(e -> {
-            
-            getUI().getNavigator().navigateTo(CustomerListView.VIEW_NAME);
+            binder.removeBean();
+            goToListView();
         });
         setVisible(false);
     }
@@ -110,5 +111,9 @@ public class CustomerEditView extends VerticalLayout implements View {
     public interface ChangeHandler {
 
         void onChange();
+    }
+        private void goToListView(){
+        session.setCurrentCustomer(null);
+        getUI().getNavigator().navigateTo(CustomerListView.VIEW_NAME);
     }
 }

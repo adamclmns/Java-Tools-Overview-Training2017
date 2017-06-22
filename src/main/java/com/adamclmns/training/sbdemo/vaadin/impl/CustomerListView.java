@@ -36,16 +36,16 @@ public class CustomerListView extends VerticalLayout implements View {
     @Autowired
     private SBDemoSession session;
 
-    private Grid<Customer> grid;
-
-    @PostConstruct
-    protected void init() {
-        // build layout
-        grid = new Grid<>(Customer.class);
+    private Grid<Customer> grid = new Grid<>(Customer.class);
         TextField filter = new TextField();
         Button addNewBtn = new Button("New Customer", FontAwesome.PLUS);
         HorizontalLayout actions = new HorizontalLayout(filter, addNewBtn);
         VerticalLayout mainLayout = new VerticalLayout(actions, grid);
+    @PostConstruct
+    protected void init() {
+        // build layout
+        Notification.show("CustomerListView.init()");
+        
         addComponent(mainLayout);
 
         grid.setHeight(300, Unit.PIXELS);
@@ -69,7 +69,7 @@ public class CustomerListView extends VerticalLayout implements View {
             session.setCurrentCustomer(new Customer(""));
             getUI().getNavigator().navigateTo(CustomerEditView.VIEW_NAME);
         });
-
+        
         listCustomers(null);
     }
 
@@ -86,8 +86,9 @@ public class CustomerListView extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         //View happens in init()
-        listCustomers(null);
-         Notification.show("Welcome to the Customer List View");
+        listCustomers("");
+        //Notification.show("Welcome to the Customer List View");
     }
+
 
 }
