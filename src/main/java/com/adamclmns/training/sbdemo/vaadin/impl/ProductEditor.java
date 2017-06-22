@@ -24,11 +24,12 @@ import com.adamclmns.training.sbdemo.repo.ProductRepo;
  * forms - less code, better UX. See e.g. AbstractForm in Viritin
  * (https://vaadin.com/addon/viritin).
  */
-@SpringComponent
-@UIScope
+//@SpringComponent
+//@UIScope
 public class ProductEditor extends VerticalLayout {
-
-	private final ProductRepo repository;
+        
+        @Autowired
+	private ProductRepo repository;
 
 	/**
 	 * The currently edited product

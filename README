@@ -1,4 +1,14 @@
 Java and Maven training designed for Professional Developers as a Quickstart with Java, Maven, Springboot, Vaadin, and JPA/Hibernate
 
-Borrowing heavily from https://springframework.guru/spring-boot-web-application-part-1-spring-initializr/
-
+Borrowing Code and Ideas from the following tutorials and blogs
+https://springframework.guru/spring-boot-web-application-part-1-spring-initializr/
+https://springframework.guru/spring-boot-web-application-part-1-spring-initializr/
+https://springframework.guru/spring-boot-web-application-part-2-using-thymeleaf/
+https://springframework.guru/spring-boot-web-application-part-3-spring-data-jpa/
+https://springframework.guru/using-the-h2-database-console-in-spring-boot-with-spring-security/
+http://spring.io/guides/gs/crud-with-vaadin/
+https://github.com/vaadin/tutorial/tree/master/src/main/java/my/vaadin/app
+https://github.com/vaadin/tutorial/blob/master/src/main/java/my/vaadin/app/Customer.java
+https://github.com/vaadin/tutorial/blob/master/src/main/java/my/vaadin/app/CustomerService.java
+https://spring.io/guides/gs/rest-service/
+https://vaadin.com/wiki?p_p_id=36&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_36_struts_action=%2Fwiki%2Fview&_36_pageResourcePrimKey=9365400&p_r_p_185834411_nodeName=vaadin.com+wiki&p_r_p_185834411_title=III+-+Views+and+Navigation+with+Vaadin+Spring

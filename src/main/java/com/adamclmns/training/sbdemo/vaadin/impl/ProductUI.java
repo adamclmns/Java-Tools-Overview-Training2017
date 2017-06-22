@@ -16,7 +16,7 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.adamclmns.training.sbdemo.repo.ProductRepo;
 
-@SpringUI(path="/ProductUI")
+//@SpringUI(path="/ProductUI")
 public class ProductUI extends UI {
 
 	private final ProductRepo repo;
