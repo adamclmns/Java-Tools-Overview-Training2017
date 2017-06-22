@@ -20,7 +20,6 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.themes.ValoTheme;
 import javax.annotation.PostConstruct;
 
-
 @SpringView(name = CustomerEditView.VIEW_NAME)
 public class CustomerEditView extends VerticalLayout implements View {
 
@@ -102,7 +101,7 @@ public class CustomerEditView extends VerticalLayout implements View {
         save.focus();
     }
 
-    public void setChangeHandler(ProductEditor.ChangeHandler h) {
+    public void setChangeHandler(CustomerEditView.ChangeHandler h) {
         // ChangeHandler is notified when either save or delete
         // is clicked
         save.addClickListener(e -> h.onChange());
@@ -113,7 +112,8 @@ public class CustomerEditView extends VerticalLayout implements View {
 
         void onChange();
     }
-        private void goToListView(){
+
+    private void goToListView() {
         session.setCurrentCustomer(null);
         getUI().getNavigator().navigateTo(CustomerListView.VIEW_NAME);
     }

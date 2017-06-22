@@ -23,13 +23,10 @@ import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.Notification;
 import javax.annotation.PostConstruct;
 
-@UIScope
 @SpringView(name = CustomerListView.VIEW_NAME)
 public class CustomerListView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "CustomerList";
-    @Autowired
-    SpringViewProvider viewProvider;
 
     @Autowired
     private CustomerRepo repo;
@@ -38,16 +35,14 @@ public class CustomerListView extends VerticalLayout implements View {
     private SBDemoSession session;
 
     private Grid<Customer> grid = new Grid<>(Customer.class);
-    TextField filter = new TextField();
-    Button addNewBtn = new Button("New Customer", FontAwesome.PLUS);
-    HorizontalLayout actions = new HorizontalLayout(filter, addNewBtn);
-    VerticalLayout mainLayout = new VerticalLayout(actions, grid);
 
     @PostConstruct
     protected void init() {
-        // build layout
         Notification.show("CustomerListView.init()");
-
+        TextField filter = new TextField();
+        Button addNewBtn = new Button("New Customer", FontAwesome.PLUS);
+        HorizontalLayout actions = new HorizontalLayout(filter, addNewBtn);
+        VerticalLayout mainLayout = new VerticalLayout(actions, grid);
         addComponent(mainLayout);
 
         grid.setHeight(300, Unit.PIXELS);
@@ -55,8 +50,6 @@ public class CustomerListView extends VerticalLayout implements View {
 
         filter.setPlaceholder("Filter by last name");
 
-        // Hook logic to components
-        // Replace listing with filtered content when user changes filter
         filter.setValueChangeMode(ValueChangeMode.LAZY);
         filter.addValueChangeListener(e -> listCustomers(e.getValue()));
 
@@ -66,7 +59,7 @@ public class CustomerListView extends VerticalLayout implements View {
                 System.out.println("ListView - Clicking an Item.");
                 session.setCurrentCustomer(e.getValue());
                 goToEditor();
-                
+
             }
         });
         // Instantiate and edit new Customer the new button is clicked
@@ -79,25 +72,22 @@ public class CustomerListView extends VerticalLayout implements View {
         listCustomers(null);
     }
 
-    // tag::listCustomers[]
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+        System.out.println("Entering View - CustomerListView");
+        listCustomers(null); //Refresh grid view
+
+    }
+
+    private void goToEditor() {
+        getUI().getNavigator().navigateTo(CustomerEditView.VIEW_NAME);
+    }
+
     void listCustomers(String filterText) {
         if (StringUtils.isEmpty(filterText)) {
             grid.setItems(repo.findAll());
         } else {
             grid.setItems(repo.findByLastNameStartsWithIgnoreCase(filterText));
         }
-    }
-    // end::listCustomers[]
-
-    @Override
-    public void enter(ViewChangeListener.ViewChangeEvent event) {
-        //View happens in init()
-        System.out.println("Entering View - CustomerListView");
-        listCustomers(null);
-        //Notification.show("Welcome to the Customer List View");
-    }
-
-    private void goToEditor() {
-        getUI().getNavigator().navigateTo(CustomerEditView.VIEW_NAME);
     }
 }
