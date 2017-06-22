@@ -7,6 +7,7 @@ package com.adamclmns.training.sbdemo.vaadin.impl;
 
 import com.adamclmns.training.sbdemo.entities.Product;
 import com.adamclmns.training.sbdemo.repo.ProductRepo;
+import com.adamclmns.training.sbdemo.session.SBDemoSession;
 import com.vaadin.data.Binder;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.Navigator;
@@ -36,14 +37,13 @@ public class ProductEditView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "ProductEditor";
     Navigator navigator;
-    
+
     @Autowired
     private ProductRepo repository;
-
-    /**
-     * The currently edited product
-     */
-    private Product product;
+    @Autowired
+    private SBDemoSession session;
+    
+    private Product entity;
 
     /* Fields to edit properties in product entity */
     TextField name = new TextField("Name");
@@ -59,32 +59,35 @@ public class ProductEditView extends VerticalLayout implements View {
 
     @PostConstruct
     void init() {
-        this.repository = repository;
-
         addComponents(name, description, actions);
-
-        // bind using naming convention
         binder.bindInstanceFields(this);
-
-        // Configure and style components
         setSpacing(true);
         actions.setStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
-
         // wire action buttons to save, delete and reset
-        save.addClickListener(e -> repository.save(product));
-        delete.addClickListener(e -> repository.delete(product));
-        cancel.addClickListener(e -> editProduct(product));
+        save.addClickListener(e -> {
+            repository.save(entity);
+            goToListView();
+        });
+        delete.addClickListener((Button.ClickEvent e) -> {
+            repository.delete(entity);
+            goToListView();
+        });
+        cancel.addClickListener((Button.ClickEvent e) -> {
+            binder.removeBean();
+            goToListView();
+        });
         setVisible(false);
     }
 
-    public interface ChangeHandler {
-
-        void onChange();
+    @Override
+    public void enter(ViewChangeEvent event) {
+        editEntity();
     }
 
-    public final void editProduct(Product c) {
+    public final void editEntity() {
+        Product c = session.getCurrentProduct();
         if (c == null) {
             setVisible(false);
             return;
@@ -92,16 +95,16 @@ public class ProductEditView extends VerticalLayout implements View {
         final boolean persisted = c.getId() != null;
         if (persisted) {
             // Find fresh entity for editing
-            product = repository.findOne(c.getId());
+            entity = repository.findOne(c.getId());
         } else {
-            product = c;
+            entity = c;
         }
         cancel.setVisible(persisted);
 
         // Bind customer properties to similarly named fields
         // Could also use annotation or "manual binding" or programmatically
         // moving values from fields to entities before saving
-        binder.setBean(product);
+        binder.setBean(entity);
 
         setVisible(true);
 
@@ -111,15 +114,20 @@ public class ProductEditView extends VerticalLayout implements View {
         name.selectAll();
     }
 
-    public void setChangeHandler(ChangeHandler h) {
+    public void setChangeHandler(ProductEditView.ChangeHandler h) {
         // ChangeHandler is notified when either save or delete
         // is clicked
         save.addClickListener(e -> h.onChange());
         delete.addClickListener(e -> h.onChange());
     }
 
-    @Override
-    public void enter(ViewChangeEvent event) {
-        Notification.show("Welcome to the Animal Farm");
+    public interface ChangeHandler {
+
+        void onChange();
+    }
+
+    private void goToListView() {
+        session.setCurrentProduct(null);
+        getUI().getNavigator().navigateTo(ProductListView.VIEW_NAME);
     }
 }

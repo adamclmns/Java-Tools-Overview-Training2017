@@ -70,8 +70,6 @@ public class CustomerEditView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeEvent event) {
-        System.out.println("Entering View - CustomerEditView");
-        //Alert, or log something. Maybe create some objects... 
         editEntity();
     }
 

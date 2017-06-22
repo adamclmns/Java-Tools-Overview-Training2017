@@ -6,6 +6,7 @@
 package com.adamclmns.training.sbdemo.session;
 
 import com.adamclmns.training.sbdemo.entities.Customer;
+import com.adamclmns.training.sbdemo.entities.Product;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Scope(value="session", proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class SBDemoSession {
     private Customer currentCustomer;
-    
+    private Product currentProduct;
     
     //Constructor
     public SBDemoSession(){
@@ -32,5 +33,14 @@ public class SBDemoSession {
     public void setCurrentCustomer(Customer currentCustomer) {
         this.currentCustomer = currentCustomer;
     }
+
+    public Product getCurrentProduct() {
+        return currentProduct;
+    }
+
+    public void setCurrentProduct(Product currentProduct) {
+        this.currentProduct = currentProduct;
+    }
+    
     
 }

@@ -35,11 +35,11 @@ public class IndexView extends VerticalLayout implements View {
     
     @PostConstruct
     void init(){
-        addComponent(new Label("This is the mainView"));
+        addComponent(new Label("This is the IndexView"));
     }
     @Override
     public void enter(ViewChangeEvent event) {
-        //View happens in init()
+
     }
     
     
