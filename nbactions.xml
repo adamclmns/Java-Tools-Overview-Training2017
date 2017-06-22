@@ -9,4 +9,13 @@
                 <goal>install</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-SpringBoot</actionName>
+            <displayName>SpringBoot</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>-e</goal>
+                <goal>spring-boot:run</goal>
+            </goals>
+        </action>
     </actions>

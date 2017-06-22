@@ -20,7 +20,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.themes.ValoTheme;
 import javax.annotation.PostConstruct;
 
-@UIScope
+
 @SpringView(name = CustomerEditView.VIEW_NAME)
 public class CustomerEditView extends VerticalLayout implements View {
 
@@ -54,23 +54,33 @@ public class CustomerEditView extends VerticalLayout implements View {
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         // wire action buttons to save, delete and reset
-        save.addClickListener((Button.ClickEvent e) -> {
-            repository.save(entity);
-            goToListView();
+        save.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent e) {
+                repository.save(entity);
+                goToListView();
+            }
         });
-        delete.addClickListener(e -> {
-            repository.delete(entity);
-            goToListView();
+        delete.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent e) {
+                repository.delete(entity);
+                goToListView();
+            }
         });
-        cancel.addClickListener(e -> {
-            binder.removeBean();
-            goToListView();
+        cancel.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent e) {
+                binder.removeBean();
+                goToListView();
+            }
         });
         setVisible(false);
     }
 
     @Override
     public void enter(ViewChangeEvent event) {
+        System.out.println("Entering View - CustomerEditView");
         //Alert, or log something. Maybe create some objects... 
         editEntity();
     }

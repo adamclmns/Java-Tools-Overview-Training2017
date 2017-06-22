@@ -49,8 +49,8 @@ public class SBDemoUI extends UI implements ViewDisplay{
         
         final CssLayout navigationBar = new CssLayout();
         navigationBar.addStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
-        navigationBar.addComponent(createNavigationButton("ProductEditView",
-                ProductEditView.VIEW_NAME));
+        navigationBar.addComponent(createNavigationButton("Home", IndexView.VIEW_NAME));
+        navigationBar.addComponent(createNavigationButton("ProductListView",   ProductListView.VIEW_NAME));
         navigationBar.addComponent(createNavigationButton("CustomerListView", CustomerListView.VIEW_NAME));
         root.addComponent(navigationBar);
 
