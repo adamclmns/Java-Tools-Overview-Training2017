@@ -1,59 +1,62 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.adamclmns.training.sbdemo.vaadin.impl;
 
-import com.adamclmns.training.sbdemo.entities.Customer;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.vaadin.ui.VerticalLayout;
-
-import com.adamclmns.training.sbdemo.repo.CustomerRepo;
+import com.adamclmns.training.sbdemo.vaadin.base.AbstractEntityEditor;
+import com.adamclmns.training.sbdemo.entities.Product;
+import com.adamclmns.training.sbdemo.repo.ProductRepo;
 import com.adamclmns.training.sbdemo.session.SBDemoSession;
 import com.vaadin.data.Binder;
 import com.vaadin.event.ShortcutAction;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.SpringView;
+import com.vaadin.spring.annotation.UIScope;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@SpringView(name = CustomerEditView.VIEW_NAME)
-public class CustomerEditView extends VerticalLayout implements View {
+/**
+ *
+ * @author adamd
+ */
+@SpringView(name = ProductEditViewImpl.VIEW_NAME)
+public class ProductEditViewImpl extends AbstractEntityEditor<Product>(new ProductRepo()) implements View {
 
-    public static final String VIEW_NAME = "CustomerEdit";
-
-    //Inject a Dependency... in this case a repository/service
+    public static final String VIEW_NAME = "ProductEditorInherited";
+    Navigator navigator;
+    
     @Autowired
-    private CustomerRepo repository;
-    @Autowired
-    private SBDemoSession session;
+    private ProductRepo repository;
+    /* Fields to edit properties in product entity */
+    TextField name = new TextField("Name");
+    TextField description = new TextField("Description");
 
-    private Customer entity;
-
-    //If you name them correctly, Binder picks them up automtically for binding
-    TextField firstName = new TextField("FirstName");
-    TextField lastName = new TextField("LastName");
-
-    Button save = new Button("Save", FontAwesome.SAVE);
-    Button cancel = new Button("Cancel");
-    Button delete = new Button("Delete", FontAwesome.TRASH_O);
-    CssLayout actions = new CssLayout(save, cancel, delete);
-
-    Binder<Customer> binder = new Binder<>(Customer.class);
+    Binder<Product> binder = new Binder<>(Product.class);
 
     @PostConstruct
     void init() {
-        addComponents(firstName, lastName, actions);
+        addComponents(name, description, actions);
         binder.bindInstanceFields(this);
         setSpacing(true);
-        actions.setStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
-        save.setStyleName(ValoTheme.BUTTON_PRIMARY);
-        save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
+        this.actions.setStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
+
         // wire action buttons to save, delete and reset
-        save.addClickListener((Button.ClickEvent e) -> {
-            repository.save(entity);
+        save.addClickListener(e -> {
+            this.repository.save(entity);
             goToListView();
         });
         delete.addClickListener((Button.ClickEvent e) -> {
@@ -64,7 +67,6 @@ public class CustomerEditView extends VerticalLayout implements View {
             binder.removeBean();
             goToListView();
         });
-        setVisible(false);
     }
 
     @Override
@@ -72,8 +74,9 @@ public class CustomerEditView extends VerticalLayout implements View {
         editEntity();
     }
 
+    @Override
     public final void editEntity() {
-        Customer c = session.getCurrentCustomer();
+        Product c = session.getCurrentProduct();
         if (c == null) {
             setVisible(false);
             return;
@@ -85,7 +88,7 @@ public class CustomerEditView extends VerticalLayout implements View {
         } else {
             entity = c;
         }
-        cancel.setVisible(true);
+        cancel.setVisible(persisted);
 
         // Bind customer properties to similarly named fields
         // Could also use annotation or "manual binding" or programmatically
@@ -96,9 +99,11 @@ public class CustomerEditView extends VerticalLayout implements View {
 
         // A hack to ensure the whole form is visible
         save.focus();
+        // Select all text in firstName field automatically
+        name.selectAll();
     }
 
-    public void setChangeHandler(CustomerEditView.ChangeHandler h) {
+    public void setChangeHandler(ProductEditViewImpl.ChangeHandler h) {
         // ChangeHandler is notified when either save or delete
         // is clicked
         save.addClickListener(e -> h.onChange());
@@ -111,7 +116,7 @@ public class CustomerEditView extends VerticalLayout implements View {
     }
 
     private void goToListView() {
-        session.setCurrentCustomer(null);
-        getUI().getNavigator().navigateTo(CustomerListView.VIEW_NAME);
+        session.setCurrentProduct(null);
+        getUI().getNavigator().navigateTo(ProductListView.VIEW_NAME);
     }
 }
