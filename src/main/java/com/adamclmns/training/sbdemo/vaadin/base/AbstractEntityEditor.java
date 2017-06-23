@@ -5,6 +5,8 @@
  */
 package com.adamclmns.training.sbdemo.vaadin.base;
 
+import com.adamclmns.training.sbdemo.repo.AbstractRepo;
+import com.adamclmns.training.sbdemo.repo.RepoFactory;
 import com.adamclmns.training.sbdemo.session.SBDemoSession;
 import com.vaadin.data.Binder;
 import com.vaadin.event.ShortcutAction;
@@ -17,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  *
@@ -25,7 +28,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public abstract class AbstractEntityEditor<T> extends VerticalLayout {
 
-    private Class<? extends CrudRepository<T,Long>> repository;
+    private AbstractRepo repository;
 
     @Autowired
     public SBDemoSession session;
@@ -41,7 +44,7 @@ public abstract class AbstractEntityEditor<T> extends VerticalLayout {
     Binder<T> binder;// = new Binder<>(T.class);
     
     public AbstractEntityEditor(){
-        
+        repository = new RepoFactory().createRepo( entity.getClass());
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         
@@ -59,7 +62,7 @@ public abstract class AbstractEntityEditor<T> extends VerticalLayout {
         });
     }
     
-    public final void editEntity(){
+    public void editEntity(){
         //THIS METHOD MUST BE OVERRIDDENIN IMPL
         try {
             throw new Exception("Not yet implemented");

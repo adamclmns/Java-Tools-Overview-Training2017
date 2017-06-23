@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @param <T>
  * @param <ID>
  */
-public interface AbstractRepo<T, ID extends Serializable> extends JpaRepository<T, ID>{
+
+public abstract class AbstractRepo<T, ID extends Serializable> extends JpaRepository<T, ID>{
     
 }

@@ -9,10 +9,10 @@ import com.adamclmns.training.sbdemo.entities.Product;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- *
- * @author Adam
- */
-public interface ProductRepo extends AbstractRepo<Product, Long>{
+import org.springframework.stereotype.Service;
+
+@Service
+public interface ProductRepo extends AbstractRepo<Product, Long> {
+
     List<Product> findByNameStartsWithIgnoreCase(String name);
 }

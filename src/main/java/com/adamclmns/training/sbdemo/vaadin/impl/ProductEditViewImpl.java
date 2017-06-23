@@ -34,7 +34,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author adamd
  */
 @SpringView(name = ProductEditViewImpl.VIEW_NAME)
-public class ProductEditViewImpl extends AbstractEntityEditor<Product>(new ProductRepo()) implements View {
+public class ProductEditViewImpl extends AbstractEntityEditor<Product> implements View {
 
     public static final String VIEW_NAME = "ProductEditorInherited";
     Navigator navigator;
@@ -75,7 +75,7 @@ public class ProductEditViewImpl extends AbstractEntityEditor<Product>(new Produ
     }
 
     @Override
-    public final void editEntity() {
+    public void editEntity() {
         Product c = session.getCurrentProduct();
         if (c == null) {
             setVisible(false);
