@@ -5,14 +5,15 @@
  */
 package com.adamclmns.training.sbdemo.repo;
 
-import com.adamclmns.training.sbdemo.entities.Product;
-import java.util.List;
+import java.io.Serializable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author Adam
+ * @author adamd
+ * @param <T>
+ * @param <ID>
  */
-public interface ProductRepo extends AbstractRepo<Product, Long>{
-    List<Product> findByNameStartsWithIgnoreCase(String name);
+public interface AbstractRepo<T, ID extends Serializable> extends JpaRepository<T, ID>{
+    
 }
