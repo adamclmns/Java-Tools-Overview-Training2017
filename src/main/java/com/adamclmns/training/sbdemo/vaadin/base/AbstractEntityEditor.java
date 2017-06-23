@@ -28,7 +28,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 public abstract class AbstractEntityEditor<T> extends VerticalLayout {
 
-    private AbstractRepo repository;
+    private Class<? extends AbstractRepo<T,Long>> repository;
 
     @Autowired
     public SBDemoSession session;

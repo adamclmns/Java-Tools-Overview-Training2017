@@ -6,6 +6,7 @@
 package com.adamclmns.training.sbdemo.repo;
 
 import java.io.Serializable;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -14,7 +15,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @param <T>
  * @param <ID>
  */
-
-public abstract class AbstractRepo<T, ID extends Serializable> extends JpaRepository<T, ID>{
+@Lazy //HACK //TODO: FIX THIS UGLY CODE
+public interface AbstractRepo<T, ID extends Serializable> extends JpaRepository<T, ID>{
     
 }
