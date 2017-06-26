@@ -10,11 +10,11 @@ public class PrimeNumbers {
 
     public static void main(String[] args) {
         log = Logger.getLogger(PrimeNumbers.class.getName());
-        ConsoleHandler handle = new ConsoleHandler();
-        handle.setFormatter(new SimpleFormatter());
-        log.addHandler(handle);
+        //ConsoleHandler handle = new ConsoleHandler();
+        //handle.setFormatter(new SimpleFormatter());
+        //log.addHandler(handle);
         //Main Method
-        log.setLevel(Level.INFO);
+        log.setLevel(Level.ALL);
         //handle.setLevel(Level.ALL);
         log.config("Arg0: " + args[0]);
         log.config("Arg1: " + args[1]);
@@ -26,12 +26,16 @@ public class PrimeNumbers {
         long startTime = System.currentTimeMillis();
         parallelPrimeTester(lowerBound, upperBound);
         long endTime = System.currentTimeMillis();
-        log.info("Run time for parallelPrimeTester is  " + (endTime - startTime) + " Milliseconds");
-
+        long parallelRunTime = endTime - startTime;
+        
         startTime = System.currentTimeMillis();
         forLoopPrimeTester(lowerBound, upperBound);
         endTime = System.currentTimeMillis();
-        log.info("Run time for forLoopPrimeTester is  " + (endTime - startTime) + " Milliseconds");
+        long forLoopRunTime = endTime - startTime;
+
+        log.info("Run time for parallelPrimeTester is  " + (parallelRunTime) + " Milliseconds");
+
+        log.info("Run time for forLoopPrimeTester is  " + (forLoopRunTime) + " Milliseconds");
     }
 
     private static void parallelPrimeTester(int lowerBound, int upperBound) {
@@ -49,7 +53,7 @@ public class PrimeNumbers {
         IntPredicate isDivisible = index -> toTest % index == 0;
         //Performing the test and returning the results in one line... because I like short code. 
         // Test runs from 2 to toTest-1, 1 and toTest are always factors... cause Integers.
-        return toTest > 1 && IntStream.range(2, toTest - 1).parallel().noneMatch(isDivisible); //Adding parallel shaved another 1s
+        return toTest > 1 && IntStream.range(2, toTest - 1).noneMatch(isDivisible); //Adding parallel shaved another 1s
 
     }
 
@@ -63,7 +67,7 @@ public class PrimeNumbers {
 
     private static boolean isPrimeSlow(int toTest) {
         // With speedup break, this still takes an average of 500ms longer than isPrime(). 
-        boolean prime = true;
+        boolean prime = true; //This is designed to mirror the IntPredicate from the lamda example
         for (int i = 2; i < toTest; i++) {
             if ((toTest % i) == 0) {
                 prime = false;
