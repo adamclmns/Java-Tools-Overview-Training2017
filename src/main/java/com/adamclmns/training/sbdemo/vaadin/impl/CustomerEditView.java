@@ -18,10 +18,12 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.themes.ValoTheme;
 import javax.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SpringView(name = CustomerEditView.VIEW_NAME)
 public class CustomerEditView extends VerticalLayout implements View {
-
+    private static final Logger log = LoggerFactory.getLogger(CustomerEditView.class);
     public static final String VIEW_NAME = "CustomerEdit";
 
     //Inject a Dependency... in this case a repository/service

@@ -5,7 +5,6 @@
  */
 package com.adamclmns.training.sbdemo.vaadin.impl;
 
-import com.adamclmns.training.sbdemo.repo.ProductRepo;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
@@ -21,6 +20,8 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -31,7 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @SpringUI
 @SpringViewDisplay
 public class SBDemoUI extends UI implements ViewDisplay{
-    
+    private static final Logger log = LoggerFactory.getLogger(SBDemoUI.class);
     private Panel springViewDisplay;
     
     @Autowired

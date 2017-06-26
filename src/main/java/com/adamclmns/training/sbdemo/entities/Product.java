@@ -5,39 +5,41 @@
  */
 package com.adamclmns.training.sbdemo.entities;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.ManyToMany;
 
 /**
  *
  * @author adamd
  */
 @Entity
-public class Product {
+public class Product implements Serializable {
 
     @Id
     @GeneratedValue
     private Long id;
-    @Transient
-    private static final String[] fields = {"id","name","description","cost","salePrice"};
+
     private String name;
     private String description;
     private BigDecimal cost;
     private BigDecimal salePrice;
     
-    protected Product() {
+    public Product() {
     }
-    
-    public Product(String name){
+
+    public Product(String name) {
         this.name = name;
     }
+
     public Long getId() {
         return id;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -61,19 +63,18 @@ public class Product {
     public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
-    public BigDecimal getSalePrice(){
+
+    public BigDecimal getSalePrice() {
         return salePrice;
     }
-    public void setSalePrice(BigDecimal salePrice){
+
+    public void setSalePrice(BigDecimal salePrice) {
         this.salePrice = salePrice;
     }
-    public String[] getFields(){
-        return Product.fields;
+    @Override
+    public String toString() {
+        return String.format("Customer[id=%d, name='%s', description='%s', cost=%f, salePrice=%f]", id,
+                name, description, cost, salePrice);
     }
-	@Override
-	public String toString() {
-		return String.format("Customer[id=%d, name='%s', description='%s', cost=%f, salePrice=%f]", id,
-				name, description, cost, salePrice);
-	}
-     
+
 }

@@ -5,23 +5,14 @@
  */
 package com.adamclmns.training.sbdemo.vaadin.impl;
 
-import com.vaadin.annotations.DesignRoot;
-import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.ThemeResource;
-import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.SpringView;
-import com.vaadin.spring.annotation.UIScope;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Embedded;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.declarative.Design;
 import javax.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -31,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringView(name=IndexView.VIEW_NAME)
 public class IndexView extends VerticalLayout implements View {
+    public static final Logger log = LoggerFactory.getLogger(IndexView.class);
     public static final String VIEW_NAME = "";
     
     @PostConstruct

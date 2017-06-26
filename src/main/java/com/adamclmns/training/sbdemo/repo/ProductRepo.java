@@ -10,7 +10,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.stereotype.Service;
-
+//Spring & JPA Magic -https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details
 @Service
 public interface ProductRepo extends JpaRepository<Product, Long> {
 

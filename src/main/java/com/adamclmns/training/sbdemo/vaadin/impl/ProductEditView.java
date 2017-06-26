@@ -21,6 +21,8 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 import javax.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -29,7 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @SpringView(name = ProductEditView.VIEW_NAME)
 public class ProductEditView extends VerticalLayout implements View {
-    private static final Logger log = Logger.getLogger(ProductEditView.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(ProductEditView.class.getName());
     public static final String VIEW_NAME = "ProductEditor";
     Navigator navigator;
 
@@ -122,6 +124,7 @@ public class ProductEditView extends VerticalLayout implements View {
     }
 
     private void goToListView() {
+        log.debug("Going to List View");
         session.setCurrentProduct(null);
         getUI().getNavigator().navigateTo(ProductListView.VIEW_NAME);
     }

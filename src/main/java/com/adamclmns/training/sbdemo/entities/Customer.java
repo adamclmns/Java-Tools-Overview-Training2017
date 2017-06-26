@@ -4,23 +4,20 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 
 @Entity
 public class Customer implements Serializable {
-
-    @Transient
-    private static final String[] fields = {"id", "firstName", "lastName"};
 
     @Id
     @GeneratedValue
     private Long id;
 
     private String firstName;
-
     private String lastName;
-
-    protected Customer() {
+    
+    public Customer() {
+        firstName = "";
+        lastName = "";
     }
 
     public Customer(String firstName) {
@@ -50,10 +47,6 @@ public class Customer implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String[] getFields() {
-        return Customer.fields;
     }
 
     @Override
