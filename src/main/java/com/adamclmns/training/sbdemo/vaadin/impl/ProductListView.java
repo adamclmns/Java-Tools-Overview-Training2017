@@ -83,7 +83,7 @@ public class ProductListView extends VerticalLayout implements View {
     
     private void goToEditor(){
         //getUI().getNavigator().navigateTo(ProductEditView.VIEW_NAME);
-        getUI().getNavigator().navigateTo(ProductEditViewImpl.VIEW_NAME);
+        getUI().getNavigator().navigateTo(ProductEditView.VIEW_NAME);
     }
     
     private void listProducts(String filterText){
