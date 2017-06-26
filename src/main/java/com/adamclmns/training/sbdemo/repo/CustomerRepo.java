@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface CustomerRepo extends AbstractRepo<Customer, Long> {
+public interface CustomerRepo extends JpaRepository<Customer, Long> {
 
 	List<Customer> findByLastNameStartsWithIgnoreCase(String lastName);
 }
