@@ -25,7 +25,8 @@ import javax.annotation.PostConstruct;
 
 @SpringView(name = CustomerListView.VIEW_NAME)
 public class CustomerListView extends VerticalLayout implements View {
-
+    private static final Logger log = Logger.getLogger(CustomerListView.class.getName());
+    
     public static final String VIEW_NAME = "CustomerList";
 
     @Autowired
@@ -56,7 +57,7 @@ public class CustomerListView extends VerticalLayout implements View {
         // Put selected Customer in Session and Navigate to Editor
         grid.asSingleSelect().addValueChangeListener((HasValue.ValueChangeEvent<Customer> e) -> {
             if (e.getValue() != null) {
-                System.out.println("ListView - Clicking an Item.");
+                log.debug("ListView - Clicking an Item.");
                 session.setCurrentCustomer(e.getValue());
                 goToEditor();
 

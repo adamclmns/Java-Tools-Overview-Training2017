@@ -31,7 +31,7 @@ import org.springframework.util.StringUtils;
 
 @SpringView(name=ProductListView.VIEW_NAME)
 public class ProductListView extends VerticalLayout implements View {
-    
+    static Logger log = Logger.getLogger(ProductListView.class.getName());
     public static final String VIEW_NAME = "ProductList";
     
     @Autowired
@@ -76,7 +76,7 @@ public class ProductListView extends VerticalLayout implements View {
     
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        System.out.println("Entering View - PrdouctListView");
+        log.debug("Entering View - PrdouctListView");
         listProducts(null); //Refresh grid view
 
     }
