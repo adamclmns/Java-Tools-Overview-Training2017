@@ -45,6 +45,8 @@ public class ProductEditView extends VerticalLayout implements View {
     /* Fields to edit properties in product entity */
     TextField name = new TextField("Name");
     TextField description = new TextField("Description");
+    TextField cost = new TextField("Cost");
+    TextField salePrice = new TextField("SalePrice");
 
     /* Action buttons */
     Button save = new Button("Save", FontAwesome.SAVE);

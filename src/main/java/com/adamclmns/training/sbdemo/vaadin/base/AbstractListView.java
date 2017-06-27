@@ -107,9 +107,5 @@ public abstract class AbstractListView<T extends Serializable> extends VerticalL
         }
     }
 
-    protected void listEntities(String filterText) {
-        // I need to replace this with a factory call, and remove this method from the child classes before 
-        // this is "JAVA" style abstract class. Using Python patterns for simplicity right now
-        throw new UnsupportedOperationException("Must Override this method in Inhereting class"); 
-    }
+    protected abstract void listEntities(String filterText);
 }

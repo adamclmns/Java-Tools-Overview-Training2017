@@ -23,7 +23,7 @@ public class CustomerListView extends AbstractListView<Customer> {
 
     @Autowired
     protected CustomerRepo repo;
-
+    
     @Override
     protected void listEntities(String filterText) {
         if (StringUtils.isEmpty(filterText)) {
