@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
  *
  * @author Adam
  */
+
 @Entity
 public class AppUser implements Serializable {
     
@@ -24,8 +25,7 @@ public class AppUser implements Serializable {
     private Long id;
     private String screenName;
     private String password;
-    @ManyToMany
-    private List<Role> roles;
+    private String roles;
     public AppUser(){
         
     }
@@ -54,12 +54,14 @@ public class AppUser implements Serializable {
         this.password = password;
     }
 
-    public List<Role> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
+
+
     
 }
