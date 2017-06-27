@@ -6,12 +6,12 @@
 package com.adamclmns.training.sbdemo.entities;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -24,10 +24,12 @@ public class CustomerOrder implements Serializable{
     @GeneratedValue
     private Long id;
     
+    @ManyToOne
+    private Customer customer;
     
-    @OneToMany
+    @ManyToMany
     private List<Product> products;
-    private BigInteger totalCost;
+    
     
     public CustomerOrder(){
         
@@ -36,7 +38,7 @@ public class CustomerOrder implements Serializable{
     public Long getId() {
         return id;
     }
-
+    
     public List<Product> getProducts() {
         return products;
     }
@@ -45,12 +47,12 @@ public class CustomerOrder implements Serializable{
         this.products = products;
     }
 
-    public BigInteger getTotalCost() {
-        return totalCost;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setTotalCost(BigInteger totalCost) {
-        this.totalCost = totalCost;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
     
     
