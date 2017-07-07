@@ -6,7 +6,7 @@
     <groupId>com.adamclmns.training</groupId>
     <artifactId>SBDemo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>SBDemo</name>
     <description>Demo project for Spring Boot</description>
     <parent>
@@ -17,6 +17,7 @@
         <!-- lookup parent from repository -->
     </parent>
     <properties>
+        <!--<project.artifactId>SBDemoApp</project.artifactId> -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -39,7 +40,7 @@
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-spring-boot-starter</artifactId>
         </dependency>
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
         </dependency>-->
@@ -80,9 +81,21 @@
     </dependencyManagement>
     <build>
         <plugins>
-            <plugin>
+            <!--            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin> -->
+            <plugin>
+            
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://10.3.2.3:8080/manager/text</url>
+                    <server>HyperVTomcat</server>
+                    <path>/${project.artifactId}</path>
+                </configuration>
+            
             </plugin>
         </plugins>
     </build>
