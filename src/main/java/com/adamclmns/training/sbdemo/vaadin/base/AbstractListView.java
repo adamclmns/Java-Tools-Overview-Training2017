@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.adamclmns.training.sbdemo.vaadin.base;
 
 import com.adamclmns.training.sbdemo.entities.Customer;
@@ -98,6 +93,7 @@ public abstract class AbstractListView<T extends Serializable> extends VerticalL
         getUI().getNavigator().navigateTo(this.editorViewName);
     }
 
+    // Generic Types... Write this once, and never look back. :)
     private void saveSelectionToSession(T selected) {
         // Any Entities added will need to be handled here. 
         if (selected.getClass().getName().equals(Product.class.getName())) {

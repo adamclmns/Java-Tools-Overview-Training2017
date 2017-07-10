@@ -53,16 +53,18 @@ public class SBDemoUI extends UI implements ViewDisplay{
         navigationBar.addComponent(createNavigationButton("Home", IndexView.VIEW_NAME));
         navigationBar.addComponent(createNavigationButton("ProductListView",   ProductListView.VIEW_NAME));
         navigationBar.addComponent(createNavigationButton("CustomerListView", CustomerListView.VIEW_NAME));
+        navigationBar.addComponent(createNavigationButton("CustomerOrderListView", CustomerOrderListView.VIEW_NAME));
         root.addComponent(navigationBar);
 
         springViewDisplay = new Panel();
         springViewDisplay.setSizeFull();
         root.addComponent(springViewDisplay);
         root.setExpandRatio(springViewDisplay, 1.0f);
-
+        
+        // Creating the Navigator, May need to update this with newer Vaadin versions. Good Demo for swappable components. 
         Navigator navigator = new Navigator(this, springViewDisplay);
         navigator.addProvider(viewProvider);
-
+        
     }
     
     @Override

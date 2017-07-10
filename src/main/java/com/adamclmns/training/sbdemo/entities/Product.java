@@ -26,8 +26,8 @@ public class Product implements Serializable {
 
     private String name;
     private String description;
-    private BigDecimal cost;
-    private BigDecimal salePrice;
+    private Integer cost;
+    private String salePrice;
     
     public Product() {
     }
@@ -56,19 +56,19 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public BigDecimal getCost() {
+    public Integer getCost() {
         return cost;
     }
 
-    public void setCost(BigDecimal cost) {
+    public void setCost(Integer cost) {
         this.cost = cost;
     }
 
-    public BigDecimal getSalePrice() {
+    public String getSalePrice() {
         return salePrice;
     }
 
-    public void setSalePrice(BigDecimal salePrice) {
+    public void setSalePrice(String salePrice) {
         this.salePrice = salePrice;
     }
     @Override

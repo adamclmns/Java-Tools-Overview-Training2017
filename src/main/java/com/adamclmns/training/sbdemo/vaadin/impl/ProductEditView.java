@@ -58,8 +58,14 @@ public class ProductEditView extends VerticalLayout implements View {
 
     @PostConstruct
     void init() {
-        addComponents(name, description, actions);
+        addComponents(name, description,cost, salePrice,  actions);
         binder.bindInstanceFields(this);
+        binder.forField(cost)
+                .withConverter(
+                        Integer::valueOf,
+                        String::valueOf,
+                        "Please use a number")
+                .bind(Product::getCost, Product::setCost);
         setSpacing(true);
         actions.setStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);

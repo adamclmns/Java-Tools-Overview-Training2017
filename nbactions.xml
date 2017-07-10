@@ -31,4 +31,12 @@
                 <exec.executable>java</exec.executable>
             </properties>
         </action>
+        <action>
+            <actionName>CUSTOM-hyperv tomcat7 deploy</actionName>
+            <displayName>hyperv tomcat7 deploy</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>tomcat7:redeploy</goal>
+            </goals>
+        </action>
     </actions>

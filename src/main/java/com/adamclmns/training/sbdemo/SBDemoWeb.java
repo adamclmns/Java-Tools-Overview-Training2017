@@ -20,6 +20,8 @@ public class SBDemoWeb {
     ServletRegistrationBean h2servletRegistration(){
         ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet() {});
         registrationBean.addUrlMappings("/console/*");
+        // This is for External Access to the H2 Console - like when this is deployed to Tomcat
+        registrationBean.addInitParameter("webAllowOthers","true");
         return registrationBean;
     }
     
