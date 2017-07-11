@@ -9,6 +9,7 @@ import com.adamclmns.training.sbdemo.entities.Product;
 import com.adamclmns.training.sbdemo.repo.ProductRepo;
 import com.adamclmns.training.sbdemo.session.SBDemoSession;
 import com.vaadin.data.Binder;
+import com.vaadin.data.converter.StringToFloatConverter;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
@@ -59,13 +60,14 @@ public class ProductEditView extends VerticalLayout implements View {
     @PostConstruct
     void init() {
         addComponents(name, description,cost, salePrice,  actions);
-        binder.bindInstanceFields(this);
-        binder.forField(cost)
-                .withConverter(
-                        Integer::valueOf,
-                        String::valueOf,
-                        "Please use a number")
-                .bind(Product::getCost, Product::setCost);
+        binder.forField(name).bind(Product::getName, Product::setName);
+        binder.forField(description).bind(Product::getDescription, Product::setDescription);
+        binder.forField(cost).withConverter(
+            new StringToFloatConverter("Must Be float")).bind(Product::getCost, Product::setCost);
+        binder.forField(salePrice).withConverter(
+            new StringToFloatConverter("Must Be float")).bind(Product::getSalePrice, Product::setSalePrice);
+        //binder.bindInstanceFields(this);
+
         setSpacing(true);
         actions.setStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);

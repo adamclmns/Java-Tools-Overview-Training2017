@@ -7,6 +7,7 @@ package com.adamclmns.training.sbdemo.vaadin.impl;
 
 import com.adamclmns.training.sbdemo.entities.CustomerOrder;
 import com.adamclmns.training.sbdemo.repo.CustomerOrderRepo;
+import com.adamclmns.training.sbdemo.repo.ProductRepo;
 import com.adamclmns.training.sbdemo.vaadin.base.AbstractListView;
 import com.vaadin.spring.annotation.SpringView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,14 @@ public class CustomerOrderListView extends AbstractListView<CustomerOrder> {
     public static final String VIEW_NAME="CustomerOrderList";
     @Autowired
     protected CustomerOrderRepo repo;
+    @Autowired
+    protected ProductRepo productRepo;
     
     public CustomerOrderListView() {
         super(CustomerOrder.class);
+        grid.removeColumn("products");
+        grid.addColumn(CustomerOrder::getTotal).setCaption("Total Sale");
+        grid.addColumn(CustomerOrder::countItems).setCaption("Number of Items");
         editorViewName = null;
     }
 

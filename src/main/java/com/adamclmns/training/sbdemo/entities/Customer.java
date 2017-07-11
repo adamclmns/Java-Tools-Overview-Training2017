@@ -51,8 +51,8 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Customer[id=%d, firstName='%s', lastName='%s']", id,
-                firstName, lastName);
+        return String.format("%s, %s",
+                lastName, firstName);
     }
 
 }
