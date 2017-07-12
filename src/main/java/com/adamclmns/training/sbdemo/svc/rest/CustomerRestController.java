@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.adamclmns.training.sbdemo.rest;
+package com.adamclmns.training.sbdemo.svc.rest;
 
-import com.adamclmns.training.sbdemo.entities.Customer;
+import com.adamclmns.training.sbdemo.persistence.entities.Customer;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.adamclmns.training.sbdemo.repo.CustomerRepo;
+import com.adamclmns.training.sbdemo.persistence.repo.CustomerRepo;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 import org.springframework.web.bind.annotation.ResponseBody;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.adamclmns.training.sbdemo.vaadin.impl;
+package com.adamclmns.training.sbdemo.vaadin.views;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;

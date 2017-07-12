@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.adamclmns.training.sbdemo.repo;
+package com.adamclmns.training.sbdemo.persistence.repo;
 
-import com.adamclmns.training.sbdemo.entities.CustomerOrder;
+import com.adamclmns.training.sbdemo.persistence.entities.CustomerOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

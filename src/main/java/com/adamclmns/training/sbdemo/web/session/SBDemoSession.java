@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.adamclmns.training.sbdemo.session;
+package com.adamclmns.training.sbdemo.web.session;
 
-import com.adamclmns.training.sbdemo.entities.Customer;
-import com.adamclmns.training.sbdemo.entities.Product;
+import com.adamclmns.training.sbdemo.persistence.entities.Customer;
+import com.adamclmns.training.sbdemo.persistence.entities.Product;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;

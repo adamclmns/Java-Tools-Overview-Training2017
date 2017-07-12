@@ -1,6 +1,6 @@
-package com.adamclmns.training.sbdemo.repo;
+package com.adamclmns.training.sbdemo.persistence.repo;
 
-import com.adamclmns.training.sbdemo.entities.Customer;
+import com.adamclmns.training.sbdemo.persistence.entities.Customer;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;

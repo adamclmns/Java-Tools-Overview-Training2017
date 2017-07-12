@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.adamclmns.training.sbdemo.vaadin.impl;
+package com.adamclmns.training.sbdemo.vaadin.views;
 
-import com.adamclmns.training.sbdemo.entities.CustomerOrder;
-import com.adamclmns.training.sbdemo.repo.CustomerOrderRepo;
-import com.adamclmns.training.sbdemo.repo.ProductRepo;
-import com.adamclmns.training.sbdemo.vaadin.base.AbstractListView;
+import com.adamclmns.training.sbdemo.persistence.entities.CustomerOrder;
+import com.adamclmns.training.sbdemo.persistence.repo.CustomerOrderRepo;
+import com.adamclmns.training.sbdemo.persistence.repo.ProductRepo;
+import com.adamclmns.training.sbdemo.vaadin.views.base.AbstractListView;
 import com.vaadin.spring.annotation.SpringView;
 import org.springframework.beans.factory.annotation.Autowired;
 

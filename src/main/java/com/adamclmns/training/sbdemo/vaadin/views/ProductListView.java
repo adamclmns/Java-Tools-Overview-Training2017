@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.adamclmns.training.sbdemo.vaadin.impl;
+package com.adamclmns.training.sbdemo.vaadin.views;
 
-import com.adamclmns.training.sbdemo.entities.Product;
-import com.adamclmns.training.sbdemo.repo.ProductRepo;
-import com.adamclmns.training.sbdemo.vaadin.base.AbstractListView;
+import com.adamclmns.training.sbdemo.persistence.entities.Product;
+import com.adamclmns.training.sbdemo.persistence.repo.ProductRepo;
+import com.adamclmns.training.sbdemo.vaadin.views.base.AbstractListView;
 import com.vaadin.spring.annotation.SpringView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +30,8 @@ public class ProductListView extends AbstractListView<Product> {
     
     public ProductListView(){
         super(Product.class);
+        // Lazy Instantiation and Lazy Fetching on the "product" side of the relationship causes a Hibernate Session Error. Removing this column, since it's not needed here. 
+        grid.removeColumn("customerOrders");
         editorViewName = ProductEditView.VIEW_NAME;
     }
     

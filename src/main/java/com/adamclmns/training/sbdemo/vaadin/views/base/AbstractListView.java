@@ -1,8 +1,8 @@
-package com.adamclmns.training.sbdemo.vaadin.base;
+package com.adamclmns.training.sbdemo.vaadin.views.base;
 
-import com.adamclmns.training.sbdemo.entities.Customer;
-import com.adamclmns.training.sbdemo.entities.Product;
-import com.adamclmns.training.sbdemo.session.SBDemoSession;
+import com.adamclmns.training.sbdemo.persistence.entities.Customer;
+import com.adamclmns.training.sbdemo.persistence.entities.Product;
+import com.adamclmns.training.sbdemo.web.session.SBDemoSession;
 import com.vaadin.data.HasValue;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;

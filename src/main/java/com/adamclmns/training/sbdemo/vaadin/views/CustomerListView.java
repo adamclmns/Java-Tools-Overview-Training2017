@@ -1,11 +1,11 @@
-package com.adamclmns.training.sbdemo.vaadin.impl;
+package com.adamclmns.training.sbdemo.vaadin.views;
 
-import com.adamclmns.training.sbdemo.entities.Customer;
+import com.adamclmns.training.sbdemo.persistence.entities.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
-import com.adamclmns.training.sbdemo.repo.CustomerRepo;
-import com.adamclmns.training.sbdemo.vaadin.base.AbstractListView;
+import com.adamclmns.training.sbdemo.persistence.repo.CustomerRepo;
+import com.adamclmns.training.sbdemo.vaadin.views.base.AbstractListView;
 import com.vaadin.spring.annotation.SpringView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

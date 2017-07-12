@@ -1,4 +1,4 @@
-package com.adamclmns.training.sbdemo.entities;
+package com.adamclmns.training.sbdemo.persistence.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
