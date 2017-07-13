@@ -7,7 +7,9 @@ package com.adamclmns.training.sbdemo.vaadin.views;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.ClassResource;
 import com.vaadin.spring.annotation.SpringView;
+import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import javax.annotation.PostConstruct;
@@ -27,7 +29,9 @@ public class IndexView extends VerticalLayout implements View {
     
     @PostConstruct
     void init(){
+        
         addComponent(new Label("This is the IndexView"));
+        addComponent(new Image("Image from File", new ClassResource("/images/image.png")));
     }
     @Override
     public void enter(ViewChangeEvent event) {
