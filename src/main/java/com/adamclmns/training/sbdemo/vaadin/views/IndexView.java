@@ -31,7 +31,7 @@ public class IndexView extends VerticalLayout implements View {
     void init(){
         
         addComponent(new Label("This is the IndexView"));
-        addComponent(new Image("Image from File", new ClassResource("/images/image.png")));
+        addComponent(new Image("Image from File", new ClassResource("/images/java_is_dead.png")));
     }
     @Override
     public void enter(ViewChangeEvent event) {
